@@ -7,10 +7,7 @@ import java.util.HashMap;
  * SubArray -> Continuous Array Values
  */
 
-record Input() {
-    static int sum;
-    static int[] array;
-}
+
 
 public class LongestSubArraySumK {
     public static void execute() {
@@ -129,6 +126,12 @@ public class LongestSubArraySumK {
             return;
         }
         System.out.println("No SubArrays Found For the Specified Sum");
+    }
+
+
+    record Input() {
+        static int sum;
+        static int[] array;
     }
 
 
