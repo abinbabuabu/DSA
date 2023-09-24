@@ -16,7 +16,8 @@ public class LongestSubArraySumK {
     public static void execute() {
         Input input = LongestSubArraySumK.inputs();
 //        LongestSubArraySumK.logicBruteForce(input.array, input.sum);
-        LongestSubArraySumK.logicBetterUsingHashMap(input.array, input.sum);
+//        LongestSubArraySumK.logicBetterUsingHashMap(input.array, input.sum);
+        LongestSubArraySumK.optimalSolution(input.array, input.sum);
     }
 
     private static Input inputs() {
@@ -24,11 +25,11 @@ public class LongestSubArraySumK {
 //        input.sum = 4;
 //        input.array = new int[]{1, 2, 3, 4, 5, 6, 1, 2, 1}; // Answer: 3
 
-        input.sum = 1;
-        input.array = new int[]{1, 0, 0, 1}; // Answer : 3
-
 //        input.sum = 1;
-//        input.array = new int[]{1, -2, 3, 0}; // Answer: 3
+//        input.array = new int[]{2, 0, 0, 1}; // Answer : 3
+
+        input.sum = 1;
+        input.array = new int[]{1, -2, 3, 0}; // Answer: 3
 
         return input;
     }
@@ -58,8 +59,10 @@ public class LongestSubArraySumK {
 
     /*
       Better Approach than Brute Force
-      Time Complexity : 0(N)
-      Using Additional Space for HashMap
+      Time Complexity : 0(N) -> Best Case if We are using ordered map and no collitions
+                        0(n^2) -> Worst Case Lot of collitions
+                        0(nlogn)
+      Space Complexity: 0(n) Using Additional Space for HashMap
      */
     private static void logicBetterUsingHashMap(int a[], int sum) {
         int maxLengthOfSubArray = 0;
@@ -85,7 +88,42 @@ public class LongestSubArraySumK {
     }
 
 
-    private static void outputResult(int sum, int maxLengthOfSubArray){
+    /*
+      Using two pointer approach
+      Time Complexity - 0(2N) - the inner while loop won't always run for Max N time;
+                                since its always checks for the right pointer;
+     */
+    private static void optimalSolution(int a[], int sum) {
+        int rightPointer = 0;
+        int leftPointer = 0;
+        int maxSubArrayLength = 0;
+        int s = a[0];
+        while (rightPointer < a.length) {
+            while (s > sum && leftPointer <= rightPointer) {
+                s -= a[leftPointer];
+                leftPointer++;
+            }
+
+            if (s == sum) {
+                int currentLengthOfSubArray = rightPointer - leftPointer + 1;
+                if (currentLengthOfSubArray > maxSubArrayLength) {
+                    maxSubArrayLength = currentLengthOfSubArray;
+                }
+            }
+
+            rightPointer++;
+            if (rightPointer < a.length) {
+                s += a[rightPointer];
+            }
+
+        }
+
+        outputResult(sum, maxSubArrayLength);
+
+    }
+
+
+    private static void outputResult(int sum, int maxLengthOfSubArray) {
         if (maxLengthOfSubArray > 0) {
             System.out.printf("Max Length of the SubArray With Sum %d is %d", sum, maxLengthOfSubArray);
             return;
