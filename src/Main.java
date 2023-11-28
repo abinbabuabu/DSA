@@ -1,7 +1,17 @@
-import Arrays.*;
+import DynamicProgramming.GridTraveller;
 
 public class Main {
     public static void main(String[] args) {
+//        Arrays();
+          DynamicProgramming();
+
+    }
+
+    public static void DynamicProgramming(){
+        GridTraveller.execute();
+    }
+
+    public static void Arrays(){
         //Arrays
         //1: Find the SecondLargest Element in an Array
 //        SecondLargest.execute();
@@ -17,8 +27,7 @@ public class Main {
 //        RotateImage.execute();
 //        7: Binary Search
 //          BinarySearch.logic();
-//          8: Merge Sorted Array
-           MergeSortedArray.execute();
-
+//        8: Merge Sorted Array
+//           MergeSortedArray.execute();
     }
 }
