@@ -1,17 +1,20 @@
+import DynamicProgramming.CanSum;
 import DynamicProgramming.GridTraveller;
 
 public class Main {
     public static void main(String[] args) {
 //        Arrays();
-          DynamicProgramming();
+        DynamicProgramming();
 
     }
 
-    public static void DynamicProgramming(){
-        GridTraveller.execute();
+    public static void DynamicProgramming() {
+        // Grid Traveller
+//        GridTraveller.execute();
+        CanSum.execute();
     }
 
-    public static void Arrays(){
+    public static void Arrays() {
         //Arrays
         //1: Find the SecondLargest Element in an Array
 //        SecondLargest.execute();
